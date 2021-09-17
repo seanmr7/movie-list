@@ -19,3 +19,11 @@ body {
 .button.button-primary {
   border-radius: 100px;
 }
+
+.delete {
+  text-align: center;
+}
+
+.delete-button {
+  margin: 0;
+}
