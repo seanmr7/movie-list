@@ -2,6 +2,10 @@ body {
   background: #fbfbf8;
 }
 
+.center-align {
+  text-align: center;
+}
+
 .success, .error {
   color: white;
   padding: 5px;
@@ -18,10 +22,6 @@ body {
 
 .button.button-primary {
   border-radius: 100px;
-}
-
-.delete {
-  text-align: center;
 }
 
 .delete-button {

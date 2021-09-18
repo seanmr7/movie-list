@@ -1,4 +1,5 @@
 // Define UI variables
+const container = document.querySelector('.container');
 const movieFormUI = document.querySelector('form');
 const titleUI = document.querySelector('#title');
 const directorUI = document.querySelector('#director');
@@ -12,11 +13,32 @@ movieFormUI.addEventListener('submit', addMovie);
 // Create movie object from form and add to list UI
 function addMovie(e) {
   e.preventDefault();
-  console.log('movie')
-  let newMovie = new Movie(titleUI.value, directorUI.value, releaseDateUI.value);
+  if(checkFields()) {
+    showMessage('Please enter valid information', 'error')
+  } else {
+    let newMovie = new Movie(titleUI.value, directorUI.value, releaseDateUI.value);
+    newMovie.createMovieUI();
+    showMessage('Movie added', 'success');
+    movieFormUI.reset();
+  }
+  
+}
 
-  newMovie.createMovieUI();
-  movieFormUI.reset();
+function checkFields() {
+  if(titleUI.value === '' || directorUI.value === '' || releaseDateUI.value === '' || isNaN(new Date(releaseDateUI.value))) {
+    return true;
+  }
+}
+
+function showMessage(messageText, type) {
+  const message = document.createElement('h6');
+  message.innerText = messageText;
+  message.classList.add(type, 'center-align')
+
+  container.prepend(message);
+  setTimeout(function() {
+    message.remove();
+  }, 2700);
 }
 
 // Define Movie object
@@ -40,7 +62,7 @@ class Movie {
     releaseDateElement.innerText = this.releasDate;
 
     const deleteTd = document.createElement('td');
-    deleteTd.classList.add('delete');
+    deleteTd.classList.add('center-align');
     const deleteBtn = document.createElement('button');
     deleteBtn.innerText = 'Delete'
     deleteBtn.classList.add('button', 'delete-button');
