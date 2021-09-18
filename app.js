@@ -8,7 +8,7 @@ const movieListUI = document.querySelector('#movie-list')
 
 // Add event listeners
 movieFormUI.addEventListener('submit', addMovie);
-
+movieListUI.addEventListener('click', deleteMovie);
 
 // Create movie object from form and add to list UI
 function addMovie(e) {
@@ -21,7 +21,6 @@ function addMovie(e) {
     showMessage('Movie added', 'success');
     movieFormUI.reset();
   }
-  
 }
 
 function checkFields() {
@@ -39,6 +38,12 @@ function showMessage(messageText, type) {
   setTimeout(function() {
     message.remove();
   }, 2700);
+}
+
+function deleteMovie(e) {
+  if(e.target.classList.contains('delete-button')) {
+    e.target.parentElement.parentElement.remove();
+  }
 }
 
 // Define Movie object
@@ -74,9 +79,5 @@ class Movie {
     newTableRow.appendChild(deleteTd);
 
     movieListUI.appendChild(newTableRow)
-  }
-
-  deleteMovieUI() {
-    // Removes table row from movie list UI
   }
 }
